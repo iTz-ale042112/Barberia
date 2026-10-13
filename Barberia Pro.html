@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barbería El Estilo | Tradición y Elegancia Masculina</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            400: '#F3C669',
+                            500: '#D4AF37',
+                            600: '#AA820A',
+                        },
+                        dark: {
+                            900: '#0D0D0D',
+                            800: '#171717',
+                            700: '#262626',
+                            600: '#404040'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Cinzel', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #FFF0B0 0%, #D4AF37 50%, #997A15 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gold-border-gradient {
+            border-image: linear-gradient(to right, #D4AF37, #404040) 1;
+        }
+        .pulse-gold {
+            box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4);
+            animation: pulse-gold-anim 2s infinite;
+        }
+        @keyframes pulse-gold-anim {
+            0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(212, 175, 55, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+        }
+        .pulse-green {
+            box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5);
+            animation: pulse-green-anim 2s infinite;
+        }
+        @keyframes pulse-green-anim {
+            0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5); }
+            70% { box-shadow: 0 0 0 15px rgba(34, 197, 94, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+        }
+    </style>
+</head>
+<body class="bg-dark-900 text-gray-200 font-sans antialiased selection:bg-gold-500 selection:text-dark-900">
+
+    <!-- NAVEGACIÓN -->
+    <header class="fixed w-full top-0 z-40 bg-dark-900/90 backdrop-blur-md border-b border-dark-700 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="#inicio" class="flex items-center space-x-3 group">
+                    <div class="w-10 h-10 rounded-full border-2 border-gold-500 flex items-center justify-center bg-dark-800 text-gold-500 group-hover:scale-105 transition-transform">
+                        <i class="fa-solid fa-scissors text-lg"></i>
+                    </div>
+                    <span class="font-serif text-xl sm:text-2xl font-bold tracking-wider text-white">
+                        EL ESTILO <span class="text-gold-500 text-xs tracking-widest block font-sans -mt-1 font-normal">BARBERÍA</span>
+                    </span>
+                </a>
+
+                <!-- Nav Links Desktop -->
+                <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                    <a href="#inicio" class="hover:text-gold-500 transition-colors py-2 border-b-2 border-transparent hover:border-gold-500">Inicio</a>
+                    <a href="#servicios" class="hover:text-gold-500 transition-colors py-2 border-b-2 border-transparent hover:border-gold-500">Servicios</a>
+                    <a href="#galeria" class="hover:text-gold-500 transition-colors py-2 border-b-2 border-transparent hover:border-gold-500">Galería</a>
+                    <a href="#contacto" class="hover:text-gold-500 transition-colors py-2 border-b-2 border-transparent hover:border-gold-500">Contacto</a>
+                </nav>
+
+                <!-- Action Button -->
+                <div class="hidden sm:block">
+                    <a href="#contacto" class="px-5 py-2.5 rounded-md bg-gold-500 hover:bg-gold-400 text-dark-900 font-semibold transition-all shadow-md hover:shadow-gold-500/20 text-sm tracking-wide">
+                        Agendar Cita
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-white focus:outline-none p-2">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-dark-800 border-b border-dark-700 px-4 pt-2 pb-6 space-y-3">
+            <a href="#inicio" class="block px-3 py-2 rounded-md hover:bg-dark-700 text-gray-200 hover:text-gold-500 mobile-nav-link">Inicio</a>
+            <a href="#servicios" class="block px-3 py-2 rounded-md hover:bg-dark-700 text-gray-200 hover:text-gold-500 mobile-nav-link">Servicios</a>
+            <a href="#galeria" class="block px-3 py-2 rounded-md hover:bg-dark-700 text-gray-200 hover:text-gold-500 mobile-nav-link">Galería</a>
+            <a href="#contacto" class="block px-3 py-2 rounded-md hover:bg-dark-700 text-gray-200 hover:text-gold-500 mobile-nav-link">Contacto</a>
+            <a href="#contacto" class="block w-full text-center px-4 py-2.5 mt-2 rounded-md bg-gold-500 text-dark-900 font-semibold mobile-nav-link">Agendar Cita</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="inicio" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-dark-900">
+        <!-- Background Overlay & Image -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&q=80&w=1920" 
+                 alt="Fondo Barbería" 
+                 class="w-full h-full object-cover object-center filter brightness-25 contrast-125 scale-105 transition-transform duration-10000"
+                 onerror="this.src='https://placehold.co/1920x1080/171717/D4AF37?text=Barberia+El+Estilo'">
+            <div class="absolute inset-0 bg-gradient-to-t from-dark-900 via-dark-900/70 to-transparent"></div>
+        </div>
+
+        <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-20">
+            <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full border border-gold-500/30 bg-dark-800/80 mb-6 backdrop-blur-sm">
+                <i class="fa-solid fa-star text-gold-500 text-xs"></i>
+                <span class="text-xs font-semibold tracking-widest uppercase text-gold-400">La Experiencia Definitiva</span>
+            </div>
+
+            <h1 class="text-4xl sm:text-6xl md:text-7xl font-serif font-black text-white tracking-tight leading-none mb-6">
+                ESTILO, TRADICIÓN Y <br>
+                <span class="gold-gradient-text">CORTE DE CALIDAD</span>
+            </h1>
+
+            <p class="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto mb-10 font-light leading-relaxed">
+                Elevamos el arte del grooming masculino. Un espacio exclusivo diseñado para el hombre moderno que valora los detalles, el buen trago y la excelencia.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#contacto" class="w-full sm:w-auto px-8 py-4 rounded-md bg-gold-500 hover:bg-gold-400 text-dark-900 font-bold transition-all transform hover:-translate-y-0.5 shadow-lg shadow-gold-500/20 text-center tracking-wider uppercase text-sm">
+                    <i class="fa-solid fa-calendar-check mr-2"></i> Agendar Cita
+                </a>
+                <a href="#servicios" class="w-full sm:w-auto px-8 py-4 rounded-md bg-transparent hover:bg-dark-800 border border-gray-600 hover:border-gold-500 text-white font-medium transition-all text-center tracking-wider uppercase text-sm">
+                    Ver Servicios
+                </a>
+            </div>
+
+            <!-- Info Badges -->
+            <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 pt-10 border-t border-dark-700/60 max-w-4xl mx-auto">
+                <div class="text-center">
+                    <p class="font-serif text-2xl font-bold text-gold-500">10+</p>
+                    <p class="text-xs text-gray-400 uppercase tracking-wider mt-1">Años de Experiencia</p>
+                </div>
+                <div class="text-center">
+                    <p class="font-serif text-2xl font-bold text-gold-500">15k+</p>
+                    <p class="text-xs text-gray-400 uppercase tracking-wider mt-1">Clientes Satisfechos</p>
+                </div>
+                <div class="text-center">
+                    <p class="font-serif text-2xl font-bold text-gold-500">4.9 ★</p>
+                    <p class="text-xs text-gray-400 uppercase tracking-wider mt-1">Valoración Media</p>
+                </div>
+                <div class="text-center">
+                    <p class="font-serif text-2xl font-bold text-gold-500">100%</p>
+                    <p class="text-xs text-gray-400 uppercase tracking-wider mt-1">Garantía de Estilo</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICIOS -->
+    <section id="servicios" class="py-24 bg-dark-800/50 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-semibold uppercase tracking-widest text-gold-500 mb-2">Nuestra Menú de Servicios</h2>
+                <p class="text-3xl sm:text-4xl font-serif font-bold text-white">Servicios de Barbería de Primer Nivel</p>
+                <div class="w-16 h-0.5 bg-gold-500 mx-auto mt-4"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Servicio 1 -->
+                <div class="bg-dark-900 border border-dark-700 hover:border-gold-500/50 rounded-lg p-6 transition-all duration-300 hover:-translate-y-2 flex flex-col justify-between group shadow-xl">
+                    <div>
+                        <div class="w-12 h-12 rounded-lg bg-dark-800 border border-gold-500/30 text-gold-500 flex items-center justify-center text-xl mb-6 group-hover:bg-gold-500 group-hover:text-dark-900 transition-colors">
+                            <i class="fa-solid fa-scissors"></i>
+                        </div>
+                        <h3 class="text-xl font-serif font-bold text-white mb-2">Corte Clásico / Moderno</h3>
+                        <p class="text-gray-400 text-sm mb-6 leading-relaxed">Asesoría de imagen, lavado, corte personalizado con acabado a navaja y peinado profesional con pomada premium.</p>
+                    </div>
+                    <div>
+                        <div class="flex justify-between items-end mb-4 pt-4 border-t border-dark-700">
+                            <span class="text-xs text-gray-400"><i class="fa-regular fa-clock mr-1"></i> 45 min</span>
+                            <span class="text-2xl font-serif font-bold text-gold-500">$20.000</span>
+                        </div>
+                        <button onclick="selectService('Corte Clásico / Moderno')" class="w-full py-2.5 rounded bg-dark-800 hover:bg-gold-500 text-gold-500 hover:text-dark-900 border border-gold-500/30 font-semibold text-sm transition-all">
+                            Seleccionar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Servicio 2 -->
+                <div class="bg-dark-900 border border-dark-700 hover:border-gold-500/50 rounded-lg p-6 transition-all duration-300 hover:-translate-y-2 flex flex-col justify-between group shadow-xl">
+                    <div>
+                        <div class="w-12 h-12 rounded-lg bg-dark-800 border border-gold-500/30 text-gold-500 flex items-center justify-center text-xl mb-6 group-hover:bg-gold-500 group-hover:text-dark-900 transition-colors">
+                            <i class="fa-solid fa-[#4a2e18] fa-user-ninja"></i>
+                            <i class="fa-solid fa-whiskey-glass"></i>
+                        </div>
+                        <h3 class="text-xl font-serif font-bold text-white mb-2">Ritual de Barba VIP</h3>
+                        <p class="text-gray-400 text-sm mb-6 leading-relaxed">Toallas calientes con aceites esenciales, perfilado milimétrico a navaja tradicional y bálsamo hidratante.</p>
+                    </div>
+                    <div>
+                        <div class="flex justify-between items-end mb-4 pt-4 border-t border-dark-700">
+                            <span class="text-xs text-gray-400"><i class="fa-regular fa-clock mr-1"></i> 35 min</span>
+                            <span class="text-2xl font-serif font-bold text-gold-500">$15.000</span>
+                        </div>
+                        <button onclick="selectService('Ritual de Barba VIP')" class="w-full py-2.5 rounded bg-dark-800 hover:bg-gold-500 text-gold-500 hover:text-dark-900 border border-gold-500/30 font-semibold text-sm transition-all">
+                            Seleccionar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Servicio 3 (Destacado) -->
+                <div class="bg-dark-900 border-2 border-gold-500 rounded-lg p-6 transition-all duration-300 hover:-translate-y-2 flex flex-col justify-between group shadow-2xl relative">
+                    <span class="absolute -top-3 right-4 bg-gold-500 text-dark-900 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Más Popular</span>
+                    <div>
+                        <div class="w-12 h-12 rounded-lg bg-gold-500 text-dark-900 flex items-center justify-center text-xl mb-6 font-bold">
+                            <i class="fa-solid fa-crown"></i>
+                        </div>
+                        <h3 class="text-xl font-serif font-bold text-white mb-2">Combo 'El Estilo'</h3>
+                        <p class="text-gray-400 text-sm mb-6 leading-relaxed">Corte de cabello completo + Arreglo de barba con toalla caliente + Exfoliación facial express y bebida de cortesía.</p>
+                    </div>
+                    <div>
+                        <div class="flex justify-between items-end mb-4 pt-4 border-t border-dark-700">
+                            <span class="text-xs text-gray-400"><i class="fa-regular fa-clock mr-1"></i> 75 min</span>
+                            <span class="text-2xl font-serif font-bold text-gold-500">$30.000</span>
+                        </div>
+                        <button onclick="selectService('Combo El Estilo')" class="w-full py-2.5 rounded bg-gold-500 hover:bg-gold-400 text-dark-900 font-bold text-sm transition-all shadow-md">
+                            Seleccionar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Servicio 4 -->
+                <div class="bg-dark-900 border border-dark-700 hover:border-gold-500/50 rounded-lg p-6 transition-all duration-300 hover:-translate-y-2 flex flex-col justify-between group shadow-xl">
+                    <div>
+                        <div class="w-12 h-12 rounded-lg bg-dark-800 border border-gold-500/30 text-gold-500 flex items-center justify-center text-xl mb-6 group-hover:bg-gold-500 group-hover:text-dark-900 transition-colors">
+                            <i class="fa-solid fa-paint-brush"></i>
+                        </div>
+                        <h3 class="text-xl font-serif font-bold text-white mb-2">Tinte & Camuflaje</h3>
+                        <p class="text-gray-400 text-sm mb-6 leading-relaxed">Coloración discreta para disimular canas o tintes de fantasía/platinados con productos de alta protección capilar.</p>
+                    </div>
+                    <div>
+                        <div class="flex justify-between items-end mb-4 pt-4 border-t border-dark-700">
+                            <span class="text-xs text-gray-400"><i class="fa-regular fa-clock mr-1"></i> 60 min</span>
+                            <span class="text-2xl font-serif font-bold text-gold-500">$25.000</span>
+                        </div>
+                        <button onclick="selectService('Tinte y Camuflaje')" class="w-full py-2.5 rounded bg-dark-800 hover:bg-gold-500 text-gold-500 hover:text-dark-900 border border-gold-500/30 font-semibold text-sm transition-all">
+                            Seleccionar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALERÍA CON FILTROS -->
+    <section id="galeria" class="py-24 bg-dark-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-xs font-semibold uppercase tracking-widest text-gold-500 mb-2">Nuestros Trabajos</h2>
+                <p class="text-3xl sm:text-4xl font-serif font-bold text-white">Galería de Estilos</p>
+                <div class="w-16 h-0.5 bg-gold-500 mx-auto mt-4"></div>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-2 mb-12">
+                <button onclick="filterGallery('todos')" class="filter-btn active-filter px-5 py-2 rounded-full text-sm font-medium border border-gold-500 bg-gold-500 text-dark-900 transition-all">Todos</button>
+                <button onclick="filterGallery('cortes')" class="filter-btn px-5 py-2 rounded-full text-sm font-medium border border-dark-700 hover:border-gold-500 text-gray-300 hover:text-white transition-all">Cortes</button>
+                <button onclick="filterGallery('barba')" class="filter-btn px-5 py-2 rounded-full text-sm font-medium border border-dark-700 hover:border-gold-500 text-gray-300 hover:text-white transition-all">Barba</button>
+                <button onclick="filterGallery('tintes')" class="filter-btn px-5 py-2 rounded-full text-sm font-medium border border-dark-700 hover:border-gold-500 text-gray-300 hover:text-white transition-all">Tintes & Diseños</button>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6" id="gallery-grid">
+                <!-- Item 1 -->
+                <div class="gallery-item cortes relative group overflow-hidden rounded-lg cursor-pointer h-72 bg-dark-800" onclick="openLightbox('https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&q=80&w=800', 'Fade Moderno Texturizado')">
+                    <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&q=80&w=800" alt="Corte 1" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.src='https://placehold.co/600x600/171717/D4AF37?text=Fade+Moderno'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark-900 via-dark-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <span class="text-xs text-gold-400 font-semibold uppercase tracking-wider">Cortes</span>
+                        <h4 class="text-white font-serif text-lg font-bold">Fade Moderno Texturizado</h4>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="gallery-item barba relative group overflow-hidden rounded-lg cursor-pointer h-72 bg-dark-800" onclick="openLightbox('https://images.unsplash.com/photo-1517832606589-715006d31d8c?auto=format&fit=crop&q=80&w=800', 'Perfilado de Barba Completa')">
+                    <img src="https://images.unsplash.com/photo-1517832606589-715006d31d8c?auto=format&fit=crop&q=80&w=800" alt="Barba 1" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.src='https://placehold.co/600x600/171717/D4AF37?text=Perfilado+Barba'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark-900 via-dark-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <span class="text-xs text-gold-400 font-semibold uppercase tracking-wider">Barba</span>
+                        <h4 class="text-white font-serif text-lg font-bold">Perfilado de Barba Completa</h4>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="gallery-item cortes relative group overflow-hidden rounded-lg cursor-pointer h-72 bg-dark-800" onclick="openLightbox('https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&q=80&w=800', 'Corte Clásico Pompadour')">
+                    <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&q=80&w=800" alt="Corte 2" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.src='https://placehold.co/600x600/171717/D4AF37?text=Pompadour'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark-900 via-dark-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <span class="text-xs text-gold-400 font-semibold uppercase tracking-wider">Cortes</span>
+                        <h4 class="text-white font-serif text-lg font-bold">Corte Clásico Pompadour</h4>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="gallery-item tintes relative group overflow-hidden rounded-lg cursor-pointer h-72 bg-dark-800" onclick="openLightbox('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&q=80&w=800', 'Platinado con Diseño Lateral')">
+                    <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&q=80&w=800" alt="Tinte 1" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.src='https://placehold.co/600x600/171717/D4AF37?text=Platinado+Estilo'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark-900 via-dark-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <span class="text-xs text-gold-400 font-semibold uppercase tracking-wider">Tintes & Diseños</span>
+                        <h4 class="text-white font-serif text-lg font-bold">Platinado con Diseño Lateral</h4>
+                    </div>
+                </div>
+
+                <!-- Item 5 -->
+                <div class="gallery-item barba cortes relative group overflow-hidden rounded-lg cursor-pointer h-72 bg-dark-800" onclick="openLightbox('https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&q=80&w=800', 'Combo Barba y Degradado Bajo')">
+                    <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&q=80&w=800" alt="Corte y barba" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.src='https://placehold.co/600x600/171717/D4AF37?text=Combo+Barba+y+Fade'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark-900 via-dark-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <span class="text-xs text-gold-400 font-semibold uppercase tracking-wider">Combo</span>
+                        <h4 class="text-white font-serif text-lg font-bold">Combo Barba y Degradado Bajo</h4>
+                    </div>
+                </div>
+
+                <!-- Item 6 -->
+                <div class="gallery-item cortes relative group overflow-hidden rounded-lg cursor-pointer h-72 bg-dark-800" onclick="openLightbox('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&q=80&w=800', 'Buzz Cut con Lineas Precision')">
+                    <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&q=80&w=800" alt="Corte 3" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.src='https://placehold.co/600x600/171717/D4AF37?text=Buzz+Cut'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark-900 via-dark-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <span class="text-xs text-gold-400 font-semibold uppercase tracking-wider">Cortes</span>
+                        <h4 class="text-white font-serif text-lg font-bold">Buzz Cut con Líneas de Precisión</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACTO Y RESERVAS -->
+    <section id="contacto" class="py-24 bg-dark-800/80 border-t border-dark-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <!-- Info Column -->
+                <div class="lg:col-span-5 space-y-8">
+                    <div>
+                        <h2 class="text-xs font-semibold uppercase tracking-widest text-gold-500 mb-2">Visítanos u Horarios</h2>
+                        <p class="text-3xl font-serif font-bold text-white mb-4">Reserva Tu Lugar</p>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Asegura tu turno de forma rápida. Selecciona el servicio, el barbero de tu preferencia, la fecha y la hora que mejor se adapten a tu agenda.
+                        </p>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 rounded bg-dark-900 border border-gold-500/30 text-gold-500 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold text-sm">Ubicación</h4>
+                                <p class="text-gray-400 text-sm">Av. Principal de la Elegancia #123, Sector Centro</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 rounded bg-dark-900 border border-gold-500/30 text-gold-500 flex items-center justify-center shrink-0">
+                                <i class="fa-regular fa-clock"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold text-sm">Horarios de Atención</h4>
+                                <p class="text-gray-400 text-sm">Lunes a Sábado: 09:00 AM - 08:00 PM</p>
+                                <p class="text-gray-400 text-sm">Domingos: 10:00 AM - 03:00 PM</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 rounded bg-dark-900 border border-gold-500/30 text-gold-500 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold text-sm">Teléfono / WhatsApp</h4>
+                                <p class="text-gray-400 text-sm">+57 300 123 4567</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Column -->
+                <div class="lg:col-span-7">
+                    <form id="booking-form" onsubmit="handleBooking(event)" class="bg-dark-900 border border-dark-700 p-8 rounded-xl shadow-2xl space-y-6">
+                        <h3 class="text-xl font-serif font-bold text-white border-b border-dark-700 pb-4">Formulario de Agendamiento</h3>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs font-semibold uppercase text-gray-400 mb-2">Nombre Completo</label>
+                                <input type="text" id="booking-name" required placeholder="Ej: Carlos Mendoza" 
+                                       class="w-full bg-dark-800 border border-dark-700 rounded p-3 text-white focus:outline-none focus:border-gold-500 text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold uppercase text-gray-400 mb-2">Teléfono / WhatsApp</label>
+                                <input type="tel" id="booking-phone" required placeholder="Ej: +57 300..." 
+                                       class="w-full bg-dark-800 border border-dark-700 rounded p-3 text-white focus:outline-none focus:border-gold-500 text-sm">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs font-semibold uppercase text-gray-400 mb-2">Servicio</label>
+                                <select id="booking-service" required class="w-full bg-dark-800 border border-dark-700 rounded p-3 text-white focus:outline-none focus:border-gold-500 text-sm">
+                                    <option value="">Selecciona un servicio</option>
+                                    <option value="Corte Clásico / Moderno">Corte Clásico / Moderno ($20.000)</option>
+                                    <option value="Ritual de Barba VIP">Ritual de Barba VIP ($15.000)</option>
+                                    <option value="Combo El Estilo">Combo 'El Estilo' ($30.000)</option>
+                                    <option value="Tinte y Camuflaje">Tinte y Camuflaje ($25.000)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold uppercase text-gray-400 mb-2">Barbero de Preferencia</label>
+                                <select id="booking-barber" required class="w-full bg-dark-800 border border-dark-700 rounded p-3 text-white focus:outline-none focus:border-gold-500 text-sm">
+                                    <option value="Cualquiera disponible">Cualquiera disponible</option>
+                                    <option value="Mateo Gómez (Master Barber)">Mateo Gómez (Master Barber)</option>
+                                    <option value="David Silva (Especialista Barba)">David Silva (Especialista Barba)</option>
+                                    <option value="Andrés López (Colorista)">Andrés López (Colorista)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs font-semibold uppercase text-gray-400 mb-2">Fecha</label>
+                                <input type="date" id="booking-date" required 
+                                       class="w-full bg-dark-800 border border-dark-700 rounded p-3 text-white focus:outline-none focus:border-gold-500 text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold uppercase text-gray-400 mb-2">Hora</label>
+                                <select id="booking-time" required class="w-full bg-dark-800 border border-dark-700 rounded p-3 text-white focus:outline-none focus:border-gold-500 text-sm">
+                                    <option value="">Selecciona una hora</option>
+                                    <option value="09:00 AM">09:00 AM</option>
+                                    <option value="10:30 AM">10:30 AM</option>
+                                    <option value="02:00 PM">02:00 PM</option>
+                                    <option value="04:00 PM">04:00 PM</option>
+                                    <option value="06:00 PM">06:00 PM</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="w-full py-4 rounded bg-gold-500 hover:bg-gold-400 text-dark-900 font-bold uppercase tracking-wider text-sm transition-all shadow-lg shadow-gold-500/20">
+                            Confirmar y Agendar Cita
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-dark-900 border-t border-dark-700 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+            <a href="#inicio" class="inline-block font-serif text-2xl font-bold tracking-wider text-white">
+                EL ESTILO <span class="text-gold-500 text-xs tracking-widest block font-sans font-normal">BARBERÍA</span>
+            </a>
+            
+            <div class="flex justify-center space-x-6 text-xl text-gray-400">
+                <a href="#" class="hover:text-gold-500 transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="hover:text-gold-500 transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" class="hover:text-gold-500 transition-colors"><i class="fa-brands fa-tiktok"></i></a>
+            </div>
+
+            <p class="text-xs text-gray-500">
+                &copy; 2026 Barbería El Estilo. Todos los derechos reservados. Sitio web interactivo ficticio.
+            </p>
+        </div>
+    </footer>
+
+    <!-- BOTÓN Y WIDGET FLOTANTE DE WHATSAPP -->
+    <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+        <!-- Chat Simulation Box (Hidden initially) -->
+        <div id="whatsapp-chat" class="hidden mb-4 w-80 bg-dark-800 border border-dark-700 rounded-xl shadow-2xl overflow-hidden transition-all duration-300 transform scale-95 opacity-0">
+            <div class="bg-emerald-700 p-4 flex items-center justify-between text-white">
+                <div class="flex items-center space-x-3">
+                    <div class="relative">
+                        <div class="w-10 h-10 rounded-full bg-dark-900 border border-gold-500 flex items-center justify-center text-gold-500">
+                            <i class="fa-solid fa-scissors"></i>
+                        </div>
+                        <span class="w-3 h-3 bg-green-500 border-2 border-dark-800 rounded-full absolute bottom-0 right-0"></span>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sm leading-none">Barbería El Estilo</h4>
+                        <span class="text-xs text-emerald-200">En línea ahora</span>
+                    </div>
+                </div>
+                <button onclick="toggleWhatsAppChat()" class="text-white hover:text-gray-200 text-sm">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            
+            <div class="p-4 bg-dark-900/90 text-sm space-y-3 max-h-60 overflow-y-auto">
+                <div class="bg-dark-800 text-gray-200 p-3 rounded-lg border border-dark-700 max-w-[85%]">
+                    👋 ¡Hola! Bienvenido a Barbería El Estilo. ¿En qué podemos ayudarte hoy?
+                </div>
+            </div>
+
+            <div class="p-3 bg-dark-800 border-t border-dark-700">
+                <button onclick="sendWhatsAppMessage()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold py-2 px-4 rounded-lg text-sm flex items-center justify-center space-x-2 transition-colors">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span>Iniciar Chat de Reserva</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- WhatsApp Floating Button -->
+        <button onclick="toggleWhatsAppChat()" class="w-14 h-14 bg-emerald-500 text-white rounded-full flex items-center justify-center text-2xl shadow-xl hover:bg-emerald-400 transition-all duration-300 pulse-green">
+            <i class="fa-brands fa-whatsapp"></i>
+        </button>
+    </div>
+
+    <!-- LIGHTBOX MODAL -->
+    <div id="lightbox-modal" class="fixed inset-0 z-50 bg-black/90 hidden items-center justify-center p-4 backdrop-blur-sm" onclick="closeLightbox()">
+        <div class="relative max-w-4xl w-full max-h-[90vh] flex flex-col items-center" onclick="event.stopPropagation()">
+            <button onclick="closeLightbox()" class="absolute -top-10 right-0 text-white text-2xl hover:text-gold-500">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <img id="lightbox-img" src="" alt="Ampliada" class="max-h-[80vh] w-auto rounded-lg shadow-2xl border border-dark-700">
+            <p id="lightbox-caption" class="text-white font-serif text-lg mt-4 font-semibold text-center"></p>
+        </div>
+    </div>
+
+    <!-- NOTIFICATION BOX -->
+    <div id="toast-notification" class="fixed top-24 right-6 z-50 bg-gold-500 text-dark-900 font-medium px-6 py-4 rounded-lg shadow-2xl transform translate-x-full transition-transform duration-300 flex items-center space-x-3">
+        <i class="fa-solid fa-circle-check text-xl"></i>
+        <span id="toast-message">Notificación</span>
+    </div>
+
+    <!-- JAVASCRIPT LÓGICA -->
+    <script>
+        // 1. Menú Móvil
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // 2. Establecer fecha mínima en el formulario (Hoy)
+        const dateInput = document.getElementById('booking-date');
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.setAttribute('min', today);
+
+        // 3. Selección directa de servicio
+        function selectService(serviceName) {
+            const serviceSelect = document.getElementById('booking-service');
+            serviceSelect.value = serviceName;
+            
+            // Scroll suave hacia el formulario
+            document.getElementById('contacto').scrollIntoView({ behavior: 'smooth' });
+            
+            showToast(`Servicio "${serviceName}" seleccionado`);
+        }
+
+        // 4. Manejo de Reserva del Formulario
+        function handleBooking(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('booking-name').value;
+            const phone = document.getElementById('booking-phone').value;
+            const service = document.getElementById('booking-service').value;
+            const barber = document.getElementById('booking-barber').value;
+            const date = document.getElementById('booking-date').value;
+            const time = document.getElementById('booking-time').value;
+
+            // Formatear mensaje para WhatsApp
+            const message = `¡Hola! Me gustaría agendar una cita.%0A%0A*Detalles de la Reserva:*%0A• *Nombre:* ${name}%0A• *Teléfono:* ${phone}%0A• *Servicio:* ${service}%0A• *Barbero:* ${barber}%0A• *Fecha:* ${date}%0A• *Hora:* ${time}`;
+            
+            showToast('¡Reserva preparada! Redirigiendo a WhatsApp...');
+
+            // Abrir WhatsApp con el mensaje estructurado
+            setTimeout(() => {
+                window.open(`https://api.whatsapp.com/send?phone=573001234567&text=${message}`, '_blank');
+                document.getElementById('booking-form').reset();
+            }, 1500);
+        }
+
+        // 5. Filtro de Galería
+        function filterGallery(category) {
+            const items = document.querySelectorAll('.gallery-item');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            // Actualizar estilo de botones
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-gold-500', 'text-dark-900', 'border-gold-500');
+                btn.classList.add('border-dark-700', 'text-gray-300');
+            });
+
+            event.target.classList.add('bg-gold-500', 'text-dark-900', 'border-gold-500');
+            event.target.classList.remove('border-dark-700', 'text-gray-300');
+
+            // Mostrar/Ocultar elementos
+            items.forEach(item => {
+                if (category === 'todos' || item.classList.contains(category)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // 6. Lightbox de imágenes
+        function openLightbox(src, caption) {
+            const modal = document.getElementById('lightbox-modal');
+            const img = document.getElementById('lightbox-img');
+            const cap = document.getElementById('lightbox-caption');
+
+            img.src = src;
+            cap.innerText = caption;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeLightbox() {
+            const modal = document.getElementById('lightbox-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // 7. Widget de WhatsApp
+        function toggleWhatsAppChat() {
+            const chat = document.getElementById('whatsapp-chat');
+            if (chat.classList.contains('hidden')) {
+                chat.classList.remove('hidden');
+                setTimeout(() => {
+                    chat.classList.remove('scale-95', 'opacity-0');
+                    chat.classList.add('scale-100', 'opacity-100');
+                }, 10);
+            } else {
+                chat.classList.remove('scale-100', 'opacity-100');
+                chat.classList.add('scale-95', 'opacity-0');
+                setTimeout(() => {
+                    chat.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        function sendWhatsAppMessage() {
+            const message = "Hola, me gustaría agendar una cita en la barbería.";
+            window.open(`https://api.whatsapp.com/send?phone=573001234567&text=${encodeURIComponent(message)}`, '_blank');
+        }
+
+        // 8. Notificaciones Toast Custom
+        function showToast(message) {
+            const toast = document.getElementById('toast-notification');
+            const toastMsg = document.getElementById('toast-message');
+
+            toastMsg.innerText = message;
+            toast.classList.remove('translate-x-full');
+
+            setTimeout(() => {
+                toast.classList.add('translate-x-full');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
